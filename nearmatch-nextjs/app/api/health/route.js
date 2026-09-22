@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import { dbConnect, isDbConnected } from '@/lib/db';
 
 export async function GET() {
@@ -11,5 +11,4 @@ export async function GET() {
     { status: 503 }
   );
 }
-
 export const dynamic = 'force-dynamic';

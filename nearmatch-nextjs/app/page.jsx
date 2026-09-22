@@ -108,11 +108,6 @@ export default function ShopperPage() {
     setModal({ deal: c });
   };
 
-  const showDeals = () => {
-    const deals = JSON.parse(localStorage.getItem('nearmatchDeals') || '[]');
-    setModal({ deals });
-  };
-
   const copyPin = async (pin) => {
     try {
       await navigator.clipboard.writeText(pin);
@@ -131,8 +126,8 @@ export default function ShopperPage() {
         <a className="logo" href="#"><span>n</span> NearMatch</a>
         <nav><a href="#how">How it works</a><a href="#merchants">For stores</a></nav>
         <button className="location" onClick={useMyLocation}>{locationLabel}</button>
+        <Link className="deals-button" href="/deals" style={{ textDecoration: 'none' }}>My deals</Link>
         <Link className="merchant" href="/merchant" style={{ textDecoration: 'none' }}>Merchant login →</Link>
-        <button className="deals-button" onClick={showDeals}>My deals</button>
         <Link className="deals-button" href="/admin" style={{ textDecoration: 'none' }}>Owner</Link>
       </header>
 
@@ -238,18 +233,24 @@ export default function ShopperPage() {
         </section>
       </main>
 
-      {modal && (
+      <footer style={{
+          borderTop: '1px solid var(--line)', background: '#fbfbf8',
+          padding: '30px max(8vw, 40px)', display: 'flex', flexWrap: 'wrap', gap: 20,
+          alignItems: 'center', justifyContent: 'space-between', fontSize: 13, color: 'var(--muted)',
+        }}>
+          <a className="logo" href="#" style={{ fontSize: 18 }}><span style={{ width: 24, height: 24, fontSize: 19 }}>n</span> NearMatch</a>
+          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+            <Link href="/deals" style={{ textDecoration: 'none', fontWeight: 600 }}>My deals</Link>
+            <Link href="/merchant" style={{ textDecoration: 'none', fontWeight: 600 }}>For stores</Link>
+            <Link href="/admin" style={{ textDecoration: 'none', fontWeight: 600 }}>Owner</Link>
+          </div>
+          <small>Verified counter rates. Live stock. Price locked for 1 hour.</small>
+        </footer>
+
+        {modal && (
         <div className="modal" onClick={() => setModal(null)}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <button className="close" onClick={() => setModal(null)}>×</button>
-            {modal.deals && (
-              <>
-                <span className="eyebrow">YOUR DEALS</span><h2>Claim history</h2>
-                {modal.deals.length ? modal.deals.map((d, i) => (
-                  <div className="saved-deal" key={i}><b>{d.product}</b><span>{d.store} · {money(d.price)}</span><strong>{d.pin}</strong></div>
-                )) : <p className="empty-results">No claimed prices yet. Claim a deal and it will appear here.</p>}
-              </>
-            )}
             {modal.deal && (
               <div className="deal">
                 <div className="eyebrow">YOUR PRICE IS LOCKED</div>
@@ -279,7 +280,7 @@ export default function ShopperPage() {
                 </div>
               </>
             )}
-            {modal.title && !modal.offers && !modal.deal && !modal.deals && (
+            {modal.title && !modal.offers && !modal.deal && (
               <><h2>{modal.title}</h2><p>{modal.body}</p></>
             )}
           </div>

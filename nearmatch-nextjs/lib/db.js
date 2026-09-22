@@ -10,6 +10,7 @@ export async function dbConnect() {
   if (!globalThis.__nearmatch_mongoose) {
     globalThis.__nearmatch_mongoose = mongoose.connect(MONGODB_URI, {
       bufferCommands: false,
+      dbName: 'nearmatch',
     });
   }
   try {

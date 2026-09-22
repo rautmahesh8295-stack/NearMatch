@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import { searchMarket } from '@/lib/store';
 
 export async function GET(req) {
@@ -13,5 +13,4 @@ export async function GET(req) {
     return NextResponse.json({ error: err.message || 'Could not load products' }, { status: 500 });
   }
 }
-
 export const dynamic = 'force-dynamic';
