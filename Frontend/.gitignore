@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+data/claims.json
+data/price-updates.json
+data/users.json
+data/merchant-listings.json
+node_modules/

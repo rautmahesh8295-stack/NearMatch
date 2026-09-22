@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: nearmatch
+    runtime: node
+    plan: free
+    buildCommand: ""
+    startCommand: "node server.js"
+    healthCheckPath: "/api/supabase-status"
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
