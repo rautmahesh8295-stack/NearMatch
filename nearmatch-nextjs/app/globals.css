@@ -247,15 +247,17 @@ nav a:hover { color: var(--green); }
 }
 .product:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(35, 64, 36, 0.12); border-color: #c7d6ca; }
 .product-icon {
-  width: 74px;
-  height: 74px;
-  flex: 0 0 74px;
+  width: 88px;
+  height: 88px;
+  flex: 0 0 88px;
   display: grid;
   place-items: center;
   font-size: 34px;
   background: #f1f5ef;
   border-radius: 14px;
+  overflow: hidden;
 }
+.product-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .product h3 { margin: 2px 0 6px; font-size: 19px; }
 .product p { margin: 0; color: var(--muted); font-size: 13px; }
 .price-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
@@ -542,6 +544,7 @@ a.directions:hover { text-decoration: underline; }
 }
 .inventory-name { display: flex; gap: 12px; align-items: center; min-width: 0; }
 .inventory-name > span { font-size: 26px; }
+.inventory-name img { width: 46px; height: 46px; object-fit: cover; border-radius: 9px; flex: 0 0 46px; }
 .inventory-name b { display: block; font-size: 14px; }
 .inventory-name small { color: var(--muted); font-size: 12px; }
 .inventory-item input {

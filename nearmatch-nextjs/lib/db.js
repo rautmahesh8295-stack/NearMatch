@@ -73,4 +73,15 @@ async function seedIfEmpty() {
     });
     console.log('[nearmatch] seeded demo merchant into MongoDB');
   }
+  const seedMap = new Map(INVENTORY.map((p) => [p.id, p.image]));
+  const stored = await Product.find({}).select('productId image').lean();
+  for (const p of stored) {
+    const url = seedMap.get(p.productId);
+    if (url && typeof p.image === 'string' && !/^https?:\/\//.test(p.image)) {
+      await Product.updateOne({ _id: p._id }, { $set: { image: url } });
+    }
+  }
+  if (stored.some((p) => !/^https?:\/\//.test(p.image || ''))) {
+    console.log('[nearmatch] synced product images to catalog URLs');
+  }
 }

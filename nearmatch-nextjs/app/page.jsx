@@ -192,7 +192,7 @@ export default function ShopperPage() {
               const best = [...p.stores].sort((a, b) => a.price - b.price)[0];
               return (
                 <article className="product" key={p.id}>
-                  <div className="product-icon">{p.image}</div>
+                  <div className="product-icon">{/^https?:\/\//.test(p.image) ? <img src={p.image} alt={p.name} loading="lazy" /> : p.image}</div>
                   <div style={{ width: '100%' }}>
                     <p>{p.brand} · {p.category}</p>
                     <h3>{p.name}</h3>
@@ -227,7 +227,7 @@ export default function ShopperPage() {
           <div className="phone">
             <div className="phone-top">‹ <b>NearMatch for Stores</b> ☰</div>
             <p>Good morning, <b>Sound &amp; Vision</b> 👋</p>
-            <div className="mini-card"><small>PRICE UPDATE REMINDER</small><b>Sony SRS-XB100</b><strong>₹3,199</strong><button>Update price</button></div>
+            <div className="mini-card"><img src="https://images.unsplash.com/photo-1589003077984-894e133dabab?auto=format&fit=crop&w=640&q=80" alt="Sony SRS-XB100" style={{ width: '100%', height: 140, objectFit: 'cover', borderRadius: 10 }} /><small>PRICE UPDATE REMINDER</small><b>Sony SRS-XB100</b><strong>₹3,199</strong><button>Update price</button></div>
             <small>Updated 2 mins ago · via WhatsApp</small>
           </div>
         </section>

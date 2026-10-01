@@ -160,7 +160,7 @@ export default function MerchantPage() {
           <div className="inventory-list">
             {inventory.map((item) => (
               <div className="inventory-item" key={item.productId}>
-                <div className="inventory-name"><span>{item.image}</span><div><b>{item.product}</b><small>{item.brand}</small></div></div>
+                <div className="inventory-name">{(/^https?:\/\//.test(item.image) ? <img src={item.image} alt={item.product} loading="lazy" /> : <span>{item.image}</span>)}<div><b>{item.product}</b><small>{item.brand}</small></div></div>
                 <input type="number" min={1} value={edits[item.productId]?.price ?? item.price} onChange={(e) => setEdits({ ...edits, [item.productId]: { ...edits[item.productId], price: e.target.value } })} aria-label={`Price for ${item.product}`} />
                 <select value={edits[item.productId]?.stock ?? item.stock} onChange={(e) => setEdits({ ...edits, [item.productId]: { ...edits[item.productId], stock: e.target.value } })}>
                   <option>In stock</option><option>Only 2 left</option><option>Out of stock</option>
